@@ -4,25 +4,34 @@ const morgan = require('morgan');
 const app = express();
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://Bohdan:pXKoI655Sxh06IPc@atlascluster.3mwlsl6.mongodb.net/?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://developer:BUgVjhMDhOUWmUWu@cluster0.9aocvfd.mongodb.net/test');
 
 const { authMiddleware } = require('./middleware/authMiddleware.js');
-const { volonteerCheckMiddleware } = require("./middleware/volonteerCheckMiddleware");
-const { defencerCheckMiddleware } = require("./middleware/defencerCheckMiddleware");
+// const { driverCheckMiddleware } = require("./middleware/driverCheckMiddleware");
+// const { shipperCheckMiddleware } = require("./middleware/shipperCheckMiddleware");
 
 const { usersRouter } = require('./routers/userRouter.js');
 const { authRouter } = require('./routers/authRouter');
-const { volonteerRouter } = require('./routers/volonteerRouter');
-const { defencerRouter } = require('./routers/defencerRouter');
-
-
+const { charityProjectRouter } = require('./routers/charityProjectRouter');
+// const { trucksRouter } = require('./routers/trucksRouter');
+// const { loadsRouter } = require('./routers/loadsRouter');
+// const { testRouter } = require('./routers/testRouter');
 app.use(express.json());
 app.use(morgan('tiny'));
 
 app.use('/api/users/me', authMiddleware, usersRouter);
 app.use('/api/auth', authRouter);
-app.use('/api/volonteer', authMiddleware, volonteerCheckMiddleware, volonteerRouter);
-app.use('/api/defencer', authMiddleware, defencerCheckMiddleware, defencerRouter);
+
+app.use('/api/charityProject', authMiddleware, charityProjectRouter);
+// app.use('/api/warriorRehabilitation', warriorRehabilitationRouter);
+// app.use('/api/helpRequest', helpRequestRouter);
+// app.use('/api/feedback', feedbackRouter);
+
+
+
+// app.use('/api/trucks', authMiddleware, driverCheckMiddleware, trucksRouter);
+// app.use('/api/loads', authMiddleware, shipperCheckMiddleware, loadsRouter);
+// app.use('/api/tests', testRouter);
 
 const start = async () => {
   try {

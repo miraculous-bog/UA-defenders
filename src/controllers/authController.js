@@ -6,15 +6,15 @@ const { SUCCESS_REGISTRATION } = require('../helpers/constants');
 
 const registerAuth = async (req, res, next) => {
   const {
-    name, email, password, role,
+    name, email, password, type,
   } = req.body;
 
   await userJoiSchema.validateAsync({
-    name, email, password, role,
+    name, email, password, type,
   });
   console.log(new Date());
   await saveUser({
-    name, email, password, role
+    name, email, password, type
   });
   return res.status(200).json({ message: `${SUCCESS_REGISTRATION}` });
 };

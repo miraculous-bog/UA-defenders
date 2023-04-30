@@ -2,12 +2,12 @@ const bcryptjs = require('bcryptjs');
 const { User } = require('../models/Users');
 
 const saveUser = async ({
-  name, email, password, role,
+  name, email, password, type,
 }) => {
   const user = new User({
     name,
     email,
-    role,
+    type,
     password: await bcryptjs.hash(password, 10),
     created_date: new Date().toISOString(),
   });

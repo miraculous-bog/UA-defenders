@@ -14,7 +14,7 @@ const userJoiSchema = Joi.object({
   password: Joi.string()
     .pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
 
-  role: Joi.any().allow('DRIVER', 'SHIPPER').required(),
+  type: Joi.any().allow('user', 'admin').required(),
 
 });
 
@@ -31,7 +31,7 @@ const User = mongoose.model('User', {
     type: String,
     required: true,
   },
-  role: {
+  type: {
     type: String,
     required: true,
   },

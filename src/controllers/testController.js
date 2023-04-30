@@ -4,3 +4,4 @@ const getTest = async (req, res, next) => {
 module.exports = {
 	getTest,
 }
+// getTest, postTest

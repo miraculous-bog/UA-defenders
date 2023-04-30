@@ -6,8 +6,8 @@ const getUser = async (req, res, next) => {
 	console.log(req.user)
 	if (req.user) {
 		const userId = req.user._id;
-		const { _id, role, email, created_date } = await User.findById(userId);
-		res.json({ user: { _id, role, email, created_date } });
+		const { _id, type, email, created_date } = await User.findById(userId);
+		res.json({ user: { _id, type, email, created_date } });
 	} else {
 		res.status(400);
 	}
