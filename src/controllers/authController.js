@@ -12,26 +12,13 @@ const registerAuth = async (req, res, next) => {
   await userJoiSchema.validateAsync({
     name, email, password, type,
   });
-  console.log(new Date());
+
   await saveUser({
     name, email, password, type
   });
   return res.status(200).json({ message: `${SUCCESS_REGISTRATION}` });
 };
 
-// const getUsers = async (req, res, next) => {
-//   // const users = await User.aggregate([
-//   //   {
-//   //     '$limit': 2
-//   //   }
-//   // ]);
-
-//   const users = await User.aggregate()
-//     // .limit(1)
-//     .count('users')
-
-//   res.json(users);
-// }
 
 const loginAuth = async (req, res, next) => {
   const user = await User.findOne({ email: req.body.email });

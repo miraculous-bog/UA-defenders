@@ -1,5 +1,5 @@
 // const { charityProjectJoiSchema } = require('../models/CharityProject.js');
-const { saveCharityProjectDB, getPendingCharityProjectsDB, getCharityProjectsDB, getCharityProjectByIdDB } = require('../services/charityProjectService');
+const { saveCharityProjectDB, getPendingCharityProjectsDB, getCharityProjectsDB, getCharityProjectByIdDB, deleteCharityProjectsDB, acceptProjectDB, rejectProjectDB } = require('../services/charityProjectService');
 
 
 const addProject = async (req, res, next) => {
@@ -14,9 +14,13 @@ const addProject = async (req, res, next) => {
 		contact,
 		location } = req.body;
 
+	const requiredFields = ['title', 'email', 'description', 'details', 'category', 'contact', 'location'];
+	const areFieldsMissing = !requiredFields.every(field => req.body[field]);
+	if (areFieldsMissing) {
+		return res.status(400).json({ message: 'Missing required fields' });
+	}
 
-
-	await saveCharityProjectDB({
+	const asyncSave = await saveCharityProjectDB({
 		created_by,
 		title,
 		email,
@@ -26,89 +30,84 @@ const addProject = async (req, res, next) => {
 		location,
 		contact
 	});
+	if (!asyncSave) {
+		return res.status(500).json({ message: 'Charity Project creation failed' });
+	}
 	return res.status(200).json({ message: `Charity Project created successfully` });
 }
 
+
 const getProjects = async (req, res, next) => {
-	const query = req.query;
-	const recievedCharityProjects = await getCharityProjectsDB(query);
-	return res.status(200).json({ recievedCharityProjects });
-}
+	try {
+		const query = req.query;
+		const receivedCharityProjects = await getCharityProjectsDB(query);
+		return res.status(200).json({ receivedCharityProjects });
+	} catch (error) {
+		return res.status(500).json({ message: error.message });
+	}
+};
+
 
 const getProjectDetails = async (req, res, next) => {
-	const id = req.query.id;
-	const recievedCharityProjectDetails = await getCharityProjectByIdDB(id);
-	return res.status(200).json(recievedCharityProjectDetails);
+	const id = req.params.id;
+	try {
+		const recievedCharityProjectDetails = await getCharityProjectByIdDB(id);
+		return res.status(200).json(recievedCharityProjectDetails);
+	} catch (error) {
+		return res.status(400).json({ message: error.message });
+	}
 }
 
 
 const getPendingProjects = async (req, res, next) => {
-	const query = req.query;
-	const pendingProjects = await getPendingCharityProjectsDB(query);
-	return res.status(200).json({ pendingProjects });
-}
-
+	try {
+		const pendingProjects = await getPendingCharityProjectsDB();
+		return res.status(200).json({ pendingProjects });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
+};
 
 const updateProject = async (req, res, next) => {
 	return;
 }
 
 const deleteProject = async (req, res, next) => {
-	return;
+	try {
+		const requestBy = req.user._id;
+		const desiredDelete = req.params.id;
+
+		const desiredDeleteProject = await getCharityProjectByIdDB(desiredDelete);
+		if (desiredDeleteProject.created_by === requestBy || req.user.role === 'admin') {
+			const projectDeleted = await deleteCharityProjectsDB(desiredDelete);
+			!projectDeleted ? res.status(500).json({ message: err.message }) : res.status(200).json({ message: "Charity Project deleted successfully" });
+		} else {
+			return res.status(403).json({ message: "Forbidden" });
+		}
+	} catch (error) {
+		console.error(error);
+		return res.status(500).json({ message: "Internal server error" });
+	}
 }
 
 const acceptProject = async (req, res, next) => {
-	return;
+	const projectId = req.params.id;
+	try {
+		await acceptProjectDB(projectId);
+		return res.status(200).json({ message: "Charity Project accepted successfully" });
+	} catch (err) {
+		return res.status(500).json({ message: err.message });
+	}
 }
-
 const rejectProject = async (req, res, next) => {
-	return;
+	const projectId = req.params.id;
+	try {
+		await rejectProjectDB(projectId);
+		return res.status(200).json({ message: "Charity Project rejected successfully" });
+	} catch (error) {
+		next(error);
+	}
 }
-// const getTrucks = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const allDriversTrucks = await getTrucksDb(created_by);
-// 	return res.status(200).json({ trucks: allDriversTrucks });
-// }
-// const addTruck = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const { type } = req.body;
-// 	await truckJoiSchema.validateAsync({
-// 		type
-// 	});
-
-// 	await saveTruck({
-// 		created_by,
-// 		type
-// 	});
-// 	return res.status(200).json({ message: `Truck created successfully` });
-// }
-// const getTruck = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const serached_truck_id = req.params.id;
-// 	const searchedDriversTruck = await getTruckById(created_by, serached_truck_id);
-// 	return res.status(200).json({ truck: searchedDriversTruck[0] });
-// }
-// const changeTruck = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const { type } = req.body;
-// 	const serached_truck_id = req.params.id;
-// 	await changeTruckById(created_by, serached_truck_id, type);
-// 	return res.status(200).json({ message: "Truck details changed successfully" });
-// }
-
-// const deleteTruck = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const serached_truck_id = req.params.id;
-// 	await deleteTruckById(created_by, serached_truck_id);
-// 	return res.status(200).json({ message: "Truck deleted successfully" });
-// }
-
-// const assignTruck = async (req, res, next) => {
-// 	const created_by = req.user._id;
-// 	const serached_truck_id = req.params.id;
-// 	await assignTruckById(created_by, serached_truck_id);
-// 	return res.status(200).json({ message: "Truck assigned successfully" });
-// }
 
 module.exports = {
 	addProject,
