@@ -25,9 +25,9 @@ const loginAuth = async (req, res, next) => {
   if (user && await bcryptjs.compare(String(req.body.password), String(user.password))) {
     const payload = { email: user.email, name: user.name, userId: user._id };
     const jwtToken = jwt.sign(payload, 'secret-jwt-key');
-    return res.json({ token: jwtToken });
+    return res.json({ token: jwtToken, successful: true });
   }
-  return res.status(403).json({ message: 'Not authorized' });
+  return res.status(403).json({ message: 'Not authorized', successful: false });
 };
 
 module.exports = {

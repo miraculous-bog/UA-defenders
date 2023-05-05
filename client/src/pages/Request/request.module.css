@@ -1,0 +1,39 @@
+.wrapper {
+	max-width: 1300px;
+	margin: 0 auto;
+	font-family: 'Roboto';
+	font-style: normal;
+	color: black;
+}
+.main {
+	display: flex;
+	justify-content: space-between;
+}
+.img {
+	max-width: 500px;
+	max-height: 380px;
+}
+
+
+/* {
+background: #F5EBDB;
+border: 1px solid #FFFFFF;
+border-radius: 10px;
+padding: 25px 50px;
+margin: 20px 0;
+} */
+/* .menu h1 {
+	font-weight: 700;
+	font-size: 48px;
+}
+
+.net h2 {
+	font-weight: 700;
+	font-size: 28px;
+	line-height: 33px;
+}
+.strong {
+	font-weight: 600;
+	display: block;
+} */
+

@@ -14,7 +14,7 @@ const getOffersRequest = async (req, res, next) => {
 const getRequestRequest = async (req, res, next) => {
 	try {
 		const query = req.query;
-		const receivedHelpRequests = await getRequestHelpRequestsDB(query, 'request');
+		const receivedHelpRequests = await getHelpRequestsDB(query, 'request');
 		return res.status(200).json({ receivedHelpRequests });
 	} catch (error) {
 		return res.status(500).json({ message: error.message });

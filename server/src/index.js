@@ -13,7 +13,14 @@ const { authRouter } = require('./routers/authRouter');
 const { charityProjectRouter } = require('./routers/charityProjectRouter');
 const { warriorRehabilitationRouter } = require('./routers/warriorRehabilitationRouter');
 const { helpRequestRouter } = require('./routers/helpRequestRouter');
-
+const { feedbackRouter } = require('./routers/feedbackRouter');
+const cors = require("cors");
+const corsOptions = {
+  origin: '*',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('tiny'));
 
@@ -23,7 +30,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/charityProject', authMiddleware, charityProjectRouter);
 app.use('/api/warriorRehabilitation', authMiddleware, warriorRehabilitationRouter);
 app.use('/api/helpRequest', authMiddleware, helpRequestRouter);
-// app.use('/api/feedback', feedbackRouter);
+app.use('/api/feedback', feedbackRouter);
 
 const start = async () => {
   try {
