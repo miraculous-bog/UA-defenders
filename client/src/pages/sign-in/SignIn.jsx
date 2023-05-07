@@ -32,7 +32,6 @@ const SignIn = () => {
 
 	if (responseData.successful) {
 		localStorage.setItem('token', responseData.token);
-		localStorage.setItem('type', responseData.type);
 		signin(responseData.token, () => navigate(fromPage, { replace: true }));
 	}
 
@@ -66,13 +65,14 @@ const SignIn = () => {
 						<InputSign type='password' placeholder="Введіть пароль" value={dataForm.password} name="password" onChange={handlerInput} />
 						<Button text='Вхід' type="submit" />
 					</form>
+					<p className='tip'>
+						if you not have an account you can{' '}
+						<Link to='/sign-up'>
+							<span className='link-helper'>Зареєструватись</span>
+						</Link>
+					</p>
 				</div>
-				<p className='tip'>
-					if you not have an account you can{' '}
-					<Link to='/sign-up'>
-						<span className='link-helper'>Зареєструватись</span>
-					</Link>
-				</p>
+
 
 				<div className={styles.bottom}>
 					<p>Все буде Україна</p>

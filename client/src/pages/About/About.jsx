@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../../common/components/Button';
 import CardMenu from '../../common/components/CardMenu';
 import styles from './about.module.css'
-
+import { Link } from 'react-router-dom';
 
 import AboutFirstImg from '../../assets/images/about1.png';
 import AboutSecondImg from '../../assets/images/about2.png';
@@ -18,8 +18,15 @@ const About = () => {
 						Волонтерські та громадскі ініціативи, що працюють в Україні та за її межами.
 					</h1>
 					<div className={styles.buttons}>
-						<Button text="Зв'язатись з нами" />
-						<Button text="Головна сторінка" />
+						<Link to="/form-feedback">
+							<Button text="Зв'язатись з нами" />
+
+						</Link>
+						<Link to="/">
+
+							<Button text="Головна сторінка" />
+
+						</Link>
 					</div>
 				</div>
 				<img className={styles.postimg} src={AboutFirstImg} alt="about1" />

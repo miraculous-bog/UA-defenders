@@ -3,6 +3,7 @@ const morgan = require('morgan');
 
 const app = express();
 const mongoose = require('mongoose');
+const cors = require("cors");
 
 mongoose.connect('mongodb+srv://developer:BUgVjhMDhOUWmUWu@cluster0.9aocvfd.mongodb.net/test');
 
@@ -14,13 +15,20 @@ const { charityProjectRouter } = require('./routers/charityProjectRouter');
 const { warriorRehabilitationRouter } = require('./routers/warriorRehabilitationRouter');
 const { helpRequestRouter } = require('./routers/helpRequestRouter');
 const { feedbackRouter } = require('./routers/feedbackRouter');
-const cors = require("cors");
+
 const corsOptions = {
-  origin: '*',
-  credentials: true,            //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-}
+  origin: 'http://localhost:3000',
+  credentials: true
+};
 app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT,PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Authorization');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
 app.use(express.json());
 app.use(morgan('tiny'));
 
@@ -30,7 +38,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/charityProject', authMiddleware, charityProjectRouter);
 app.use('/api/warriorRehabilitation', authMiddleware, warriorRehabilitationRouter);
 app.use('/api/helpRequest', authMiddleware, helpRequestRouter);
-app.use('/api/feedback', feedbackRouter);
+app.use('/api/feedback', authMiddleware, feedbackRouter);
 
 const start = async () => {
   try {

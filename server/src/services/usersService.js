@@ -2,8 +2,9 @@ const bcryptjs = require('bcryptjs');
 const { User } = require('../models/Users');
 
 const saveUser = async ({
-  name, email, password, type,
+  name, email, password
 }) => {
+  const type = 'user';
   const user = new User({
     name,
     email,

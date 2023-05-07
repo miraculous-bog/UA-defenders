@@ -10,12 +10,12 @@ export const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 
 	const signin = (newUser, cb) => {
+
 		setUser(newUser);
 		cb();
 	};
-	const signout = (cb) => {
+	const signout = () => {
 		localStorage.clear();
-		cb();
 		setUser(null);
 	};
 

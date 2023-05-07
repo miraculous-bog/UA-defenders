@@ -9,7 +9,7 @@ const useFetch = (typePost) => {
 			method: 'POST',
 			body: JSON.stringify(dataForm),
 			headers: {
-				'Content-Type': 'application/json; charset=UTF-8',
+				'Content-Type': 'application/json',
 			},
 		})
 			.then((response) => response.json())

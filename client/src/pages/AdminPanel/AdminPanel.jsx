@@ -1,15 +1,46 @@
-import React from 'react';
-
+import React, { useState, useEffect } from 'react';
 import Panel from './components/Panel';
 import Feed from './components/Feed';
-
 import styles from './adminPanel.module.css';
 
 const AdminPanel = () => {
+	const [activeType, setActiveType] = useState('charityProject');
+	const [data, setData] = useState([]);
+
+	useEffect(() => {
+		const options = {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${localStorage.getItem('token')}`,
+			},
+		};
+
+		fetch(`http://localhost:8080/api/${activeType}/pending`, options)
+			.then((data) => data.json())
+			.then((data) => {
+				console.log(data);
+				const fieldName = Object.keys(data)[0];
+				const fieldValue = data[fieldName];
+				setData(fieldValue);
+			})
+			.catch((err) => console.log('error'));
+	}, [activeType]);
+
+	console.log(data);
+
+	const handleCardMenuClick = (type) => {
+		setActiveType(type);
+	};
+
 	return (
 		<div>
-			<Panel />
-			<Feed />
+			<Panel activeType={activeType} onCardMenuClick={handleCardMenuClick} />
+			{data && data.length > 0 ? (
+				<Feed data={data} />
+			) : (
+				<p>No data to display.</p>
+			)}
 		</div>
 	);
 };

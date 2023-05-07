@@ -35,9 +35,9 @@ const addWarrior = async (req, res, next) => {
 		contact,
 	});
 	if (!asyncSave) {
-		return res.status(500).json({ message: 'Charity Project creation failed' });
+		return res.status(500).json({ message: 'Warrior Rehabilitatio creation failed' });
 	}
-	return res.status(200).json({ message: `Charity Project created successfully` });
+	return res.status(200).json({ message: `Warrior Rehabilitation created successfully` });
 }
 
 

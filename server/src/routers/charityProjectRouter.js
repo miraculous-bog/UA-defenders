@@ -10,7 +10,7 @@ router.get('/:id', getProjectDetails);
 router.post('/', addProject);
 router.delete('/:id', fileEditingMiddleware, deleteProject);
 router.patch('/:id', fileEditingMiddleware, updateProject);
-router.patch('/accept/:id', adminCheckMiddleware, acceptProject);
+router.put('/accept/:id', adminCheckMiddleware, acceptProject);
 router.patch('/reject/:id', adminCheckMiddleware, rejectProject);
 
 

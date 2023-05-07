@@ -1,0 +1,20 @@
+.card {
+	background: #F5EBDB;
+	border: 1px solid #FFFFFF;
+	border-radius: 10px;
+	padding: 25px;
+	transition: all 0.5s;
+	max-width: 300px;
+}
+.card:hover {
+	border: 3px solid #FFFFFF;
+}
+p {
+	font-size: 15px;
+}
+.category {
+	padding: 2px 5px;
+	border: 1px solid #C08767;
+	/* border-radius: 50%; */
+	text-align: center;
+}

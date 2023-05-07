@@ -17,6 +17,9 @@
 .card:hover {
 	border: 4px solid #C08767;
 }
+.active{
+	border: 4px solid #C08767;	
+}
 .img {
 	max-width: 256px;
 	max-width: 100%;	

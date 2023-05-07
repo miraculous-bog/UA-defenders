@@ -1,18 +1,13 @@
 import React from 'react';
-
-
 import styles from './input.module.css'
 
-
-const Input = ({ title = 'Title', description = '', type = 'text', placeholder = 'Ваша відповідь' }) => {
-
+const Input = ({ label, name, type, value, onChange }) => {
 	return (
-		<div className={styles.wrapper}>
-			<h2>{title}</h2>
-			<p>{description}</p>
-			<input type={type} placeholder={placeholder} />
+		<div>
+			<label htmlFor={name}>{label}</label>
+			<input type={type} name={name} value={value} onChange={onChange} required />
 		</div>
 	);
-}
+};
 
 export default Input;

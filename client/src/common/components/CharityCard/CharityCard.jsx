@@ -1,35 +1,54 @@
-import React from 'react';
-
-import Stub from '../../../assets/images/stub.png'
+import React, { useState } from 'react';
+import Stub from '../../../assets/images/stub.png';
 import Button from '../Button';
 import CardWrapper from '../../HOCS/CardWrapper';
-
 import styles from './charityCard.module.css';
+import cors from 'cors';
 
-const CharityCard = ({ img = Stub }) => {
+const CharityCard = ({ id, img = Stub, title, description, details, btnState = true }) => {
+	const [btn, setBtn] = useState(btnState);
 
+	const acceptRequest = async (id) => {
+
+		const options = {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${localStorage.getItem('token')}`,
+			},
+		};
+		console.log(`Bearer ${localStorage.getItem('token')}`);
+		fetch(`http://localhost:8080/api/charityProject/accept/${id}`, options)
+			.then((data) => data.json())
+			.then((data) => {
+				console.log(data);
+				setBtn(false);
+			})
+			.catch((err) => console.log('error'));
+
+	};
+
+	const rejectRequest = async (id) => {
+		// код, що був написаний вище
+	};
 	return (
 		<div className={styles.card}>
 			<div className={styles.content}>
 				<div className={styles.text}>
-					<h1 className={styles.title}>
-						24 бронежилети для підрозділів ЗСУ в м.Києві
-					</h1>
+					<h1 className={styles.title}>{title}</h1>
+					<p>{description}</p>
 					<p>
-						Для захисників м.Києва потрібно 24 бронежилетів класу IV+, які добре захищають від куль та уламків. Бронежилети рятують життя.
-					</p>
-					<p>
-						<span className={styles.static}>Потрібно зібрати:</span>  310 000
+						<span className={styles.static}>Потрібно зібрати:</span> {details}
 					</p>
 				</div>
-				<img clasName={styles.img} src={img} alt='vizualization' />
+				<img className={styles.img} src={img} alt="vizualization" />
 			</div>
 			<div className={styles.buttons}>
 				<Button text="Детальна інформація" />
-				<div className="controllers">
-					<Button className={styles.btn} text="Прийняти" />
-					<Button className={styles.btn} text="Відхилити" />
-				</div>
+				{btn ? <div className="controllers">
+					<Button className={styles.btn} text="Прийняти" fn={acceptRequest} id={id} />
+					<Button className={styles.btn} text="Відхилити" fn={rejectRequest} id={id} />
+				</div> : null}
 			</div>
 		</div>
 	);

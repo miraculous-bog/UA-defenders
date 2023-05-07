@@ -9,9 +9,9 @@ router.get('/pending', adminCheckMiddleware, getPendingWarriors);
 router.get('/:id', getWarriorDetails);
 router.post('/', addWarrior);
 router.delete('/:id', deleteWarrior);
-router.patch('/:id', updateWarrior);
-router.patch('/accept/:id', adminCheckMiddleware, acceptWarrior);
-router.patch('/reject/:id', adminCheckMiddleware, rejectWarrior);
+router.put('/:id', updateWarrior);
+router.put('/accept/:id', adminCheckMiddleware, acceptWarrior);
+router.put('/reject/:id', adminCheckMiddleware, rejectWarrior);
 
 
 module.exports = {
