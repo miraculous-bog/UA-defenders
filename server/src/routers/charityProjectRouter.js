@@ -11,7 +11,7 @@ router.post('/', addProject);
 router.delete('/:id', fileEditingMiddleware, deleteProject);
 router.patch('/:id', fileEditingMiddleware, updateProject);
 router.put('/accept/:id', adminCheckMiddleware, acceptProject);
-router.patch('/reject/:id', adminCheckMiddleware, rejectProject);
+router.put('/reject/:id', adminCheckMiddleware, rejectProject);
 
 
 module.exports = {

@@ -37,7 +37,7 @@ const AdminPanel = () => {
 		<div>
 			<Panel activeType={activeType} onCardMenuClick={handleCardMenuClick} />
 			{data && data.length > 0 ? (
-				<Feed data={data} />
+				<Feed data={data} typeCard={activeType} />
 			) : (
 				<p>No data to display.</p>
 			)}

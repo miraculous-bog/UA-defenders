@@ -45,7 +45,7 @@ const Header = () => {
 			{localStorage.length !== 0 && (<nav className={styles.nav}>
 				<Link to="/about-us">Хто ми</Link>
 
-				<Link to="/from-feedback">Зворотній зв'язок</Link>
+				<Link to="/form-feedback">Зворотній зв'язок</Link>
 				{isAdmin && (
 					<Link to="/admin-panel" className={styles.adminPanel}>
 						adminPanel

@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Stub from '../../../assets/images/stub.png';
 import Button from '../Button';
 import CardWrapper from '../../HOCS/CardWrapper';
-import styles from './charityCard.module.css';
-import Modal from '../Modal';
+import styles from './helpCard.module.css';
 import cors from 'cors';
 
-const CharityCard = ({ id, img = Stub, title, description, details, btnState = true }) => {
+const HelpCard = ({ id, img = Stub, category, contact, created_by, btnState = true, created_date, description, email, location, title, type }) => {
 	const [btn, setBtn] = useState(btnState);
 
 	const acceptRequest = async (id) => {
@@ -19,7 +18,7 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/charityProject/accept/${id}`, options)
+		fetch(`http://localhost:8080/api/helpRequest/accept/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -38,14 +37,13 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/charityProject/reject/${id}`, options)
+		fetch(`http://localhost:8080/api/helpRequest/reject/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
 				setBtn(false);
 			})
 			.catch((err) => console.log('error'));
-
 	};
 	return (
 		<div className={styles.card}>
@@ -54,13 +52,16 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 					<h1 className={styles.title}>{title}</h1>
 					<p>{description}</p>
 					<p>
-						<span className={styles.static}>Потрібно зібрати:</span> {details}
+						<span className={styles.static}>Контакти:</span> {contact}
 					</p>
+					{/* <p>
+						<span className={styles.static}>Тип:</span> {type === 'offers' ? 'Пропоную допомогу' : 'Потребую допомигу'}
+					</p> */}
 				</div>
 				<img className={styles.img} src={img} alt="vizualization" />
 			</div>
 			<div className={styles.buttons}>
-				<Modal name={title} detail={details} />
+				<Button text="Детальна інформація" />
 				{btn ? <div className="controllers">
 					<Button className={styles.btn} text="Прийняти" fn={acceptRequest} id={id} />
 					<Button className={styles.btn} text="Відхилити" fn={rejectRequest} id={id} />
@@ -70,4 +71,4 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 	);
 };
 
-export default CardWrapper(CharityCard);
+export default CardWrapper(HelpCard);

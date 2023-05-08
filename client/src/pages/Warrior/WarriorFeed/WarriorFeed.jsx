@@ -10,14 +10,17 @@ const WarriorFeed = ({ data }) => {
 				{data.map((item) => (
 					<li key={item._id} className={styles.item}>
 						<WarriorCard
+							img={item.img}
+							btnState={false}
 							id={item._id}
 							name={item.name}
 							history={item.history}
 							location={item.location}
 							militaryPoint={item.militaryPoint}
 							cost={item.cost}
-							img={item.img}
-							btnState={false}
+							details={item.details}
+							status={item.status}
+							contact={item.contact}
 						/>
 					</li>
 				))}

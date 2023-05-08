@@ -6,7 +6,8 @@ import CardWrapper from '../../HOCS/CardWrapper';
 
 import styles from './requestCard.module.css';
 
-const RquestCard = ({ id, email, location, title, description, category, contact, status, type }) => {
+const RequestCard = ({ id, email, location, title, description, category, contact, status, type }) => {
+
 	return (
 		<div className={styles.card}>
 			<div className={styles.content}>
@@ -23,9 +24,11 @@ const RquestCard = ({ id, email, location, title, description, category, contact
 					<p className={styles.category}>{category}</p>
 				</div>
 			</div>
-			<Button text="Детальна інформація" />
+			{/* <Button text="Детальна інформація" /> */}
 		</div>
 	);
 };
 
-export default RquestCard;
+export default RequestCard;
+
+

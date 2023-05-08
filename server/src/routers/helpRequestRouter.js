@@ -10,9 +10,9 @@ router.get('/pending', adminCheckMiddleware, getPendingRequests);
 router.get('/:id', getRequestDetails);
 router.post('/', addRequest);
 router.delete('/:id', deleteRequest);
-router.patch('/:id', updateRequest);
-router.patch('/accept/:id', adminCheckMiddleware, acceptRequest);
-router.patch('/reject/:id', adminCheckMiddleware, rejectRequest);
+router.put('/:id', updateRequest);
+router.put('/accept/:id', adminCheckMiddleware, acceptRequest);
+router.put('/reject/:id', adminCheckMiddleware, rejectRequest);
 
 
 module.exports = {
