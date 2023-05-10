@@ -4,15 +4,24 @@ import Button from '../../common/components/Button';
 import CardMenu from '../../common/components/CardMenu';
 import styles from './project.module.css'
 import ProjectFeed from './ProjectFeed/ProjectFeed';
-
+import FilterSelect from '../../common/components/FilterSelect';
+import generateQueryString from '../../common/helper/generateQueryString';
 
 import ProjectImg from '../../assets/images/project.png';
 import { Link } from 'react-router-dom';
 
 const Project = () => {
-	const [activeType, setActiveType] = useState('charityProject');
+	// const [activeType, setActiveType] = useState('charityProject');
 	const [data, setData] = useState([]);
+	const [selectFilter, setSelectFilter] = useState({
+		text: "",
+		selectedOption: null,
+	});
 
+
+	const handleSelectFilter = (text, selectedOption) => {
+		setSelectFilter({ text, selectedOption });
+	};
 	useEffect(() => {
 
 		const options = {
@@ -23,7 +32,7 @@ const Project = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/charityProject`, options)
+		fetch(`http://localhost:8080/api/charityProject${generateQueryString(selectFilter)}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -31,7 +40,7 @@ const Project = () => {
 			})
 			.catch((err) => console.log('error'));
 
-	}, []);
+	}, [selectFilter]);
 
 	return (
 		<div className={styles.wrapper}>
@@ -51,6 +60,7 @@ const Project = () => {
 				</div>
 				<img className={styles.postimg} src={ProjectImg} alt="project" />
 			</div>
+			<FilterSelect text={selectFilter.text} option={selectFilter.selectedOption} handleFilter={handleSelectFilter} />
 			<ProjectFeed data={data} />
 		</div>
 	);

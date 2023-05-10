@@ -87,7 +87,7 @@ const FormFeedback = () => {
 					onChange={handleChange}
 				/>
 
-				<button type="submit">Відправити</button>
+				<button className={styles.submit} type="submit">Надіслати</button>
 			</form>
 		</div>
 	);

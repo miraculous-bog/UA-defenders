@@ -4,7 +4,8 @@ import Button from '../../common/components/Button';
 import CardMenu from '../../common/components/CardMenu';
 import styles from './request.module.css'
 import RequestFeed from './RequestFeed';
-
+import FilterSelect from '../../common/components/FilterSelect';
+import generateQueryString from '../../common/helper/generateQueryString';
 
 import ProjectImg from '../../assets/images/project.png';
 import { Link } from 'react-router-dom';
@@ -12,6 +13,13 @@ import { Link } from 'react-router-dom';
 const Request = () => {
 	const [activeType, setActiveType] = useState('offers');
 	const [data, setData] = useState([]);
+	const [selectFilter, setSelectFilter] = useState({
+		text: "",
+		selectedOption: null,
+	});
+	const handleSelectFilter = (text, selectedOption) => {
+		setSelectFilter({ text, selectedOption });
+	};
 
 	useEffect(() => {
 
@@ -23,15 +31,16 @@ const Request = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/helpRequest/${activeType}`, options)
+		fetch(`http://localhost:8080/api/helpRequest/${activeType}${generateQueryString(selectFilter)}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
 				setData(data.receivedHelpRequests);
+				console.log(`http://localhost:8080/api/helpRequest/${activeType}${generateQueryString()}`);
 			})
 			.catch((err) => console.log('error'));
 
-	}, [activeType]);
+	}, [activeType, selectFilter]);
 	const handleTypeChange = (type) => {
 		setActiveType(type);
 	};
@@ -45,6 +54,10 @@ const Request = () => {
 					<p>
 						Наша мета: допомогти волонтерам, активним громадянам, які хочуть долучитися до ініціатив та людям, які потребують допомогу — знайти одне одного.
 					</p>
+
+
+
+
 					<div className={styles.buttons}>
 						<Link to="/form-request-offer">
 							<Button text="Надаю допомогу" />
@@ -54,8 +67,13 @@ const Request = () => {
 						</Link>
 					</div>
 				</div>
+
 				<img className={styles.postimg} src={ProjectImg} alt="project" />
+
 			</div>
+			<FilterSelect text={selectFilter.text} option={selectFilter.selectedOption} handleFilter={handleSelectFilter} />
+
+
 			<div className={styles.cklickers}>
 				<h4 className={activeType === 'offers' ? styles.active : ''} onClick={() => handleTypeChange('offers')}>
 					Пропозиції

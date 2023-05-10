@@ -76,7 +76,7 @@ const acceptRequestDB = async (requestId) => {
 	}
 }
 
-const rejectRequest = async (requestId) => {
+const rejectRequestDB = async (requestId) => {
 	try {
 		return await HelpRequest.findByIdAndUpdate({ _id: requestId }, { $set: { status: "rejected" } });
 	} catch (err) {
@@ -85,5 +85,5 @@ const rejectRequest = async (requestId) => {
 }
 
 module.exports = {
-	getHelpRequestsDB, getPendingHelpRequstDB, getHelpRequestByIdDB, saveHelpRequestDB, deleteHelpRequestsDB, acceptRequestDB, rejectRequest
+	getHelpRequestsDB, getPendingHelpRequstDB, getHelpRequestByIdDB, saveHelpRequestDB, deleteHelpRequestsDB, acceptRequestDB, rejectRequestDB
 };

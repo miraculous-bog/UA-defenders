@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from './modal.module.css';
 
-function Modal({ name = '', contact = '', detail = '' }) {
+function Modal({ name = '', contact = '', detail = '', btn = 'Детальна інформація' }) {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleOpenModal = () => {
@@ -14,7 +14,7 @@ function Modal({ name = '', contact = '', detail = '' }) {
 
 	return (
 		<div>
-			<button className={styles.button} onClick={handleOpenModal}>Детальна інформація</button>
+			<button className={styles.button} onClick={handleOpenModal}>{btn}</button>
 			{showModal && (
 				<div className={styles.modal}>
 					<div className={styles.content}>

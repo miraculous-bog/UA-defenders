@@ -74,9 +74,9 @@ const FormRequest = ({ typeForm }) => {
 				<Input label="Email" name="email" type="email" value={email} onChange={handleChange} />
 				<Input label="Локація" name="location" type="text" value={location} onChange={handleChange} />
 				<Input label="Опис" name="description" type="text" value={description} onChange={handleChange} />
-				<RadioBtn label="Категория" name="category" value={category} onChange={handleChange} options={['Автомобили', 'Бронежилеты', 'Теплопровизоры', 'Военная одежда', 'Рации', 'Генераторы', 'Дроны', 'Медикаменты', 'Военное снаряжение', 'Иное']} />
+				<RadioBtn label="Категорія" name="category" value={category} onChange={handleChange} options={['Автомобілі', 'Бронежилети', 'Тепловізори', 'Військовий одяг', 'Рація', 'Генератори', 'Дрони', 'Медикаменти', 'Військове спорядження', 'Інше']} />
 				<Input label="Контакти" name="contact" type="text" value={contact} onChange={handleChange} />
-				<button type="submit">Отправить</button>
+				<button className={styles.submit} type="submit">Надіслати</button>
 			</form>
 		</div>
 	);

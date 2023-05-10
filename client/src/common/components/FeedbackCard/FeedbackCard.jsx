@@ -19,7 +19,7 @@ const FeedbackCard = ({ id, img = Stub, email, message, contact, btnState = true
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/helpRequest/${id}`, options)
+		fetch(`http://localhost:8080/api/feedback/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);

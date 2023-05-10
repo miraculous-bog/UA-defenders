@@ -68,8 +68,9 @@ const FormProject = () => {
 				<Input label="Детали" name="details" type="text" value={details} onChange={handleChange} />
 				<Input label="Локация" name="location" type="text" value={location} onChange={handleChange} />
 				<Input label="Контакты" name="contact" type="text" value={contact} onChange={handleChange} />
-				<RadioBtn label="Категория" name="category" value={category} onChange={handleChange} options={['Автомобили', 'Бронежилеты', 'Теплопровизоры', 'Военная одежда', 'Рации', 'Генераторы', 'Дроны', 'Медикаменты', 'Военное снаряжение', 'Иное']} />
-				<button type="submit">Отправить</button>
+
+				<RadioBtn label="Категорія" name="category" value={category} onChange={handleChange} options={['Автомобілі', 'Бронежилети', 'Тепловізори', 'Військовий одяг', 'Рація', 'Генератори', 'Дрони', 'Медикаменти', 'Військове спорядження', 'Інше']} />
+				<button className={styles.submit} type="submit">Надіслати</button>
 			</form>
 		</div>
 	);

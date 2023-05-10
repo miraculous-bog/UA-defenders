@@ -142,7 +142,7 @@ const FormWarrior = () => {
 					value={formData.contact}
 					onChange={handleChange}
 				/>
-				<button type="submit">Відправити</button>
+				<button className={styles.submit} type="submit">Відправити</button>
 			</form>
 		</div>
 	);
