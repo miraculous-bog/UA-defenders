@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4ca1af8f.css",
+    "main.js": "/static/js/main.d9d40956.js",
+    "static/media/main.png": "/static/media/main.fe661a96058c1ab04976.png",
+    "static/media/about1.png": "/static/media/about1.3f2326885c422f417a4c.png",
+    "static/media/about2.png": "/static/media/about2.173dce3d7392f055a030.png",
+    "static/media/submain.png": "/static/media/submain.fc394441004d48a55fb0.png",
+    "static/media/project.png": "/static/media/project.35fbcf5acec2a19a2676.png",
+    "static/media/warrior.png": "/static/media/warrior.29aed08a16a69ec6c417.png",
+    "static/media/fond4.png": "/static/media/fond4.dbb49cefc0755ae5c5f9.png",
+    "static/media/fond1.png": "/static/media/fond1.3b0c90c7a8579f73a244.png",
+    "static/media/heart.png": "/static/media/heart.11de1c81458408bd363e.png",
+    "static/media/fond6.png": "/static/media/fond6.370dcf8ebfd5545914b5.png",
+    "static/media/fond2.png": "/static/media/fond2.d839c7832af84f73c5e8.png",
+    "static/media/fond3.png": "/static/media/fond3.c445b6b4be2de5d69887.png",
+    "static/media/fond5.png": "/static/media/fond5.fc29b29de64a88a89b82.png",
+    "static/media/Logo.svg": "/static/media/Logo.d92856dac7832260420e938ea786bf7d.svg",
+    "static/media/Exit.svg": "/static/media/Exit.c3bfe2da0ea4e7b74bbcf5d926bae515.svg",
+    "index.html": "/index.html",
+    "main.4ca1af8f.css.map": "/static/css/main.4ca1af8f.css.map",
+    "main.d9d40956.js.map": "/static/js/main.d9d40956.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4ca1af8f.css",
+    "static/js/main.d9d40956.js"
+  ]
+}
