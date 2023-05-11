@@ -96,8 +96,8 @@ const SignUp = () => {
 					</form>
 					<p className='tip'>
 						if you have an account you can{' '}
-						<Link to='/sign-in'>
-							<span className='link-helper'>Увійт</span>
+						<Link to=''>
+							<span className='link-helper'>Увійти</span>
 						</Link>
 					</p>
 				</div>

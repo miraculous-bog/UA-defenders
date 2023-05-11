@@ -39,7 +39,7 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<Link to="/">
+			<Link to="/main">
 				<Logo className={styles.logo} />
 			</Link>
 			{localStorage.length !== 0 && (<nav className={styles.nav}>
@@ -51,7 +51,7 @@ const Header = () => {
 						adminPanel
 					</Link>
 				)}
-				<Link to="/sign-in">
+				<Link to="/main">
 					<Exit className={styles.exit} onClick={handleExit} />
 				</Link>
 			</nav>)}

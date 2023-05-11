@@ -24,17 +24,16 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Main />} />
-            <Route index element={<Main />} />
-
-
-            <Route path="sign-in" element={<SignIn />} />
+            <Route index element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
-            <Route path="about-us" element={<About />} />
-            <Route path="charity-project" element={<Project />} />
-            <Route path="warrior-rehabilitation" element={<Warrior />} />
-            <Route path="help-request" element={<Request />} />
-            <Route path="fond" element={<Fond />} />
+
+
+            <Route path="main" element={<RequireAuth><Main /></RequireAuth>} />
+            <Route path="about-us" element={<RequireAuth><About /></RequireAuth>} />
+            <Route path="charity-project" element={<RequireAuth><Project /></RequireAuth>} />
+            <Route path="warrior-rehabilitation" element={<RequireAuth><Warrior /></RequireAuth>} />
+            <Route path="help-request" element={<RequireAuth><Request /></RequireAuth>} />
+            <Route path="fond" element={<RequireAuth><Fond /></RequireAuth>} />
 
             <Route path="form-project" element={<RequireAuth><FormProject /></RequireAuth>} />
             <Route path="form-warrior" element={<RequireAuth><FormWarrior /></RequireAuth>} />
