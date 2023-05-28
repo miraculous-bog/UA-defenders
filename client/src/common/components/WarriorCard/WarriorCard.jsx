@@ -7,6 +7,8 @@ import Modal from '../Modal';
 
 import styles from './warriorCard.module.css';
 
+import URL from '../../helper/url';
+
 const WarriorCard = ({ id, name, history, location, militaryPoint, cost, img = Stub, btnState = true, contact, details }) => {
 	const [btn, setBtn] = useState(btnState);
 
@@ -20,7 +22,7 @@ const WarriorCard = ({ id, name, history, location, militaryPoint, cost, img = S
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/warriorRehabilitation/accept/${id}`, options)
+		fetch(`${URL}/api/warriorRehabilitation/accept/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -39,7 +41,7 @@ const WarriorCard = ({ id, name, history, location, militaryPoint, cost, img = S
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/helpRequest/reject/${id}`, options)
+		fetch(`${URL}/api/helpRequest/reject/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);

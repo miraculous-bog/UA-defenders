@@ -1,9 +1,5 @@
 import React, { useState } from 'react';
 
-import Stub from '../../../assets/images/stub.png'
-import Button from '../Button';
-import CardWrapper from '../../HOCS/CardWrapper';
-
 import styles from './requestCard.module.css';
 
 const RequestCard = ({ id, email, location, title, description, category, contact, status, type }) => {
@@ -19,7 +15,7 @@ const RequestCard = ({ id, email, location, title, description, category, contac
 						{description}
 					</p>
 					<p>
-						<span className={styles.static}>Контакти:</span>  {contact} {email}
+						<span className={styles.strong}>Контакти:</span>  {contact} {email}
 					</p>
 					<p className={styles.category}>{category}</p>
 				</div>

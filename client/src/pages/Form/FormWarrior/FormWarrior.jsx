@@ -7,7 +7,11 @@ import Input from '../components/Input';
 import RadioBtn from '../components/RadioBtn';
 import styles from './formWarrior.module.css';
 
+import URL from '../../../common/helper/url';
+import { useNavigate } from 'react-router-dom';
+
 const FormWarrior = () => {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		email: '',
 		name: '',
@@ -31,7 +35,7 @@ const FormWarrior = () => {
 	const sendFormData = async () => {
 		setIsLoading(true);
 		try {
-			const response = await fetch('http://localhost:8080/api/warriorRehabilitation', {
+			const response = await fetch(`${URL}/api/warriorRehabilitation`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -51,7 +55,8 @@ const FormWarrior = () => {
 				details: '',
 				contact: '',
 			});
-			window.location.href = '/warrior-rehabilitation';
+
+			navigate('/warrior-rehabilitation', { replace: true });
 		} catch (error) {
 			console.log(error);
 			alert(error.message);
@@ -71,11 +76,9 @@ const FormWarrior = () => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.name}>
-				<h2>Надати допомогу</h2>
+				<h2>Реабілітація військового</h2>
 				<p>
-					Тут ви можете запропонувати допомогу/послугу/продукт для цивільних
-					та військових. Також ця база може допомогти волонтам та організаціям
-					з'єднювати потребу та її вирішення.
+					За допомогою цієї форми ви можете розказати про  вашу проблему, історію поранення та надати інформацію необхідну для надання фінансової допомоги.
 				</p>
 			</div>
 			<form onSubmit={handleSubmit}>

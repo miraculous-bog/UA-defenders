@@ -1,5 +1,9 @@
 .wrapper {
-	max-width: 1300px;
+	max-width: 1175px;
+	margin: 0 auto;
+}
+.img {
+	max-width: 1275px;
 	margin: 0 auto;
 }
 .fonds {
@@ -11,8 +15,8 @@
 	justify-content: space-between;
 }
 .description img{
-	max-width: 350px;
-	max-height: 260px;
+	max-width: 471px;
+	max-height: 390px;
 	margin-top: 30px;
 }
 .fonds, .support, .text
@@ -20,6 +24,19 @@
 background: #F5EBDB;
 border: 1px solid #FFFFFF;
 border-radius: 10px;
-padding: 25px 50px;
+padding: 10px 35px;
 margin: 20px 0;
 }
+.fonds img {
+	max-width: 186px;
+	height: 186px;
+	/* margin-top: 7%; */
+	width: 100%;
+}
+
+.text {
+	width: 50%;
+}
+/* .description img{
+	width: 45%;
+} */

@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import Stub from '../../../assets/images/stub.png';
 import Button from '../Button';
 import CardWrapper from '../../HOCS/CardWrapper';
+import Modal from '../Modal';
 import styles from './helpCard.module.css';
-import cors from 'cors';
+
+import URL from '../../helper/url';
 
 const HelpCard = ({ id, img = Stub, category, contact, created_by, btnState = true, created_date, description, email, location, title, type }) => {
 	const [btn, setBtn] = useState(btnState);
@@ -18,7 +20,7 @@ const HelpCard = ({ id, img = Stub, category, contact, created_by, btnState = tr
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/helpRequest/accept/${id}`, options)
+		fetch(`${URL}/api/helpRequest/accept/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -37,7 +39,7 @@ const HelpCard = ({ id, img = Stub, category, contact, created_by, btnState = tr
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/helpRequest/reject/${id}`, options)
+		fetch(`${URL}/api/helpRequest/reject/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -61,7 +63,7 @@ const HelpCard = ({ id, img = Stub, category, contact, created_by, btnState = tr
 				<img className={styles.img} src={img} alt="vizualization" />
 			</div>
 			<div className={styles.buttons}>
-				<Button text="Детальна інформація" />
+				<Modal name={title} detail={description} contact={contact} />
 				{btn ? <div className="controllers">
 					<Button className={styles.btn} text="Прийняти" fn={acceptRequest} id={id} />
 					<Button className={styles.btn} text="Відхилити" fn={rejectRequest} id={id} />

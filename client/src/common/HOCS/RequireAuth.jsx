@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '../hook/useAuth';
 
+import URL from '../helper/url';
+
 const RequireAuth = ({ children }) => {
 	const location = useLocation();
 	const [authChecked, setAuthChecked] = useState(false);
@@ -11,7 +13,8 @@ const RequireAuth = ({ children }) => {
 		const checkAuth = async () => {
 			if (user) {
 				try {
-					const response = await fetch('http://localhost:8080/api/users/me', {
+					console.log('try');
+					const response = await fetch(`${URL}/api/users/me`, {
 						headers: {
 							'Content-Type': 'application/json',
 							'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -29,6 +32,7 @@ const RequireAuth = ({ children }) => {
 			}
 
 			if (!user) {
+				console.log('try!user');
 				setAuthChecked(true);
 				return;
 			}
@@ -40,11 +44,13 @@ const RequireAuth = ({ children }) => {
 	}, [user, signout]);
 
 	if (!authChecked) {
+		console.log('!!authChecked');
 		return null;
 	}
 
 	if (!user) {
-		return <Navigate to="../" state={{ from: location }} />;
+		console.log('!user');
+		return <Navigate to="../sign-in" state={{ from: location }} />;
 	}
 
 	return <>{children}</>;

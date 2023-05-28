@@ -9,9 +9,12 @@
 	display: flex;
 	justify-content: space-between;
 }
-.img {
-	max-width: 500px;
-	max-height: 380px;
+
+.postimg {
+	max-width: 420px;
+	max-height: 300px;
+	margin-top: 45px;
+	margin-bottom: 30px;
 }
 .active {
 	border-bottom: 5px solid #C08767;

@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import Button from '../../../common/components/Button';
 
 import Input from '../components/Input';
 
 import styles from './formFeedback.module.css';
 
+import URL from '../../../common/helper/url';
+
 const FormFeedback = () => {
+	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
 		email: '',
-		messagee: '',
+		message: '',
 		contact: ''
 	});
 
@@ -24,7 +27,7 @@ const FormFeedback = () => {
 	const sendFormData = async () => {
 		setIsLoading(true);
 		try {
-			const response = await fetch('http://localhost:8080/api/feedback', {
+			const response = await fetch(`${URL}/api/feedback`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -35,10 +38,10 @@ const FormFeedback = () => {
 			if (!response.ok) throw new Error('Помилка при відправці форми');
 			setFormData({
 				email: '',
-				messagee: '',
+				message: '',
 				contact: ''
 			});
-			window.location.href = '/';
+			navigate('/', { replace: true });
 		} catch (error) {
 			console.log(error);
 			alert(error.message);

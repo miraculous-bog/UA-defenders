@@ -55,8 +55,8 @@ const SignIn = () => {
 						/>
 						<Button text="Вхід" type="submit" />
 					</form>
-					<p className="tip">
-						If you don't have an account, you can{' '}
+					<p className={styles.tip}>
+						Якщо ви не маєте акаунта, ви можете{' '}
 						<Link to="/sign-up">
 							<span className="link-helper">Зареєструватись</span>
 						</Link>

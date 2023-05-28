@@ -1,5 +1,5 @@
 .wrapper {
-	max-width: 1300px;
+	max-width: 1250px;
 	margin: 0 auto;
 	font-family: 'Roboto';
 	font-style: normal;
@@ -21,7 +21,7 @@
 background: #F5EBDB;
 border: 1px solid #FFFFFF;
 border-radius: 10px;
-margin: 20px 0;
+margin: 0px 0;
 }
 .content {
 	padding: 25px 50px;
@@ -47,9 +47,10 @@ margin: 20px 0;
 }
 .net {
 	display: grid;
-	width: 100%;
+	/* width: 100%;
+	margin: 0 auto; */
 	grid-template-columns: 45% 45%;
-	grid-gap: 10%;
+	grid-gap: 5%;
 }
 p {
 	font-weight: 400;

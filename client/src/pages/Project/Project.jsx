@@ -10,6 +10,8 @@ import generateQueryString from '../../common/helper/generateQueryString';
 import ProjectImg from '../../assets/images/project.png';
 import { Link } from 'react-router-dom';
 
+import URL from '../../common/helper/url';
+
 const Project = () => {
 	// const [activeType, setActiveType] = useState('charityProject');
 	const [data, setData] = useState([]);
@@ -32,7 +34,7 @@ const Project = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/charityProject${generateQueryString(selectFilter)}`, options)
+		fetch(`${URL}/api/charityProject${generateQueryString(selectFilter)}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);

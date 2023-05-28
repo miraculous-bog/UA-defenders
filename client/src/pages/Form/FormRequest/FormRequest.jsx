@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 
 import Button from '../../../common/components/Button';
 
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Input from '../components/Input';
 // import RadioBtn from './components/RadioBtn';
 import RadioBtn from '../components/RadioBtn';
 import styles from './formRequest.module.css';
 
+import URL from '../../../common/helper/url';
+
 const FormRequest = ({ typeForm }) => {
+	console.log(typeForm);
+	const navigate = useNavigate();
+
 	const offerDescr = {
 		title: 'Надаю допомогу',
 		text: 'Тут ви можете запропонувати допомогу/послугу/продукт для цивільних та військових. Також ця база може допомогти волонтам та організаціям зєднювати потребу та її вирішення.'
@@ -36,7 +41,7 @@ const FormRequest = ({ typeForm }) => {
 	const handleSubmit = async e => {
 		e.preventDefault();
 		if (email && location && title && category && contact && description) {
-			const response = await fetch(`http://localhost:8080/api/helpRequest/`, {
+			const response = await fetch(`${URL}/api/helpRequest/`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -54,7 +59,8 @@ const FormRequest = ({ typeForm }) => {
 					description: '',
 					contact: '',
 				});
-				window.location.href = '/help-request';
+
+				navigate('/help-request', { replace: true });
 			} else {
 				alert('Ошибка при отправке данных');
 			}
@@ -66,8 +72,8 @@ const FormRequest = ({ typeForm }) => {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.name}>
-				<h2>{typeForm === 'offer' ? offerDescr.title : requestDescr.title}</h2>
-				<p>{typeForm === 'offer' ? offerDescr.text : requestDescr.text}</p>
+				<h2>{typeForm === 'offers' ? offerDescr.title : requestDescr.title}</h2>
+				<p>{typeForm === 'offers' ? offerDescr.text : requestDescr.text}</p>
 			</div>
 			<form onSubmit={handleSubmit}>
 				<Input label="Назва" name="title" type="text" value={title} onChange={handleChange} />

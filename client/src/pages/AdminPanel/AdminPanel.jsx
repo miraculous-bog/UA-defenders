@@ -3,6 +3,8 @@ import Panel from './components/Panel';
 import Feed from './components/Feed';
 import styles from './adminPanel.module.css';
 
+import URL from '../../common/helper/url';
+
 const AdminPanel = () => {
 	const [activeType, setActiveType] = useState('charityProject');
 	const [data, setData] = useState([]);
@@ -16,7 +18,7 @@ const AdminPanel = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/${activeType}/pending`, options)
+		fetch(`${URL}/api/${activeType}/pending`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);

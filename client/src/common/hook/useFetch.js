@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
+import URL from '../helper/url';
+
 const useFetch = (typePost) => {
 	const [responseData, setResponseData] = useState({});
 
 	const fetchData = (dataForm) => {
 		console.log(dataForm, typePost);
-		fetch(`http://localhost:8080/api/auth/${typePost}`, {
+		fetch(`${URL}/api/auth/${typePost}`, {
 			method: 'POST',
 			body: JSON.stringify(dataForm),
 			headers: {

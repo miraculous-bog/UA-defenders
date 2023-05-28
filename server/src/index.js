@@ -1,10 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 
+const PORT = process.env.PORT || 8080;
 const app = express();
 const mongoose = require('mongoose');
 const cors = require("cors");
 
+console.log(PORT);
 mongoose.connect('mongodb+srv://developer:BUgVjhMDhOUWmUWu@cluster0.9aocvfd.mongodb.net/test');
 
 const { authMiddleware } = require('./middleware/authMiddleware.js');
@@ -17,7 +19,7 @@ const { helpRequestRouter } = require('./routers/helpRequestRouter');
 const { feedbackRouter } = require('./routers/feedbackRouter');
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: '*',
   credentials: true
 };
 app.use(cors(corsOptions));
@@ -42,7 +44,7 @@ app.use('/api/feedback', authMiddleware, feedbackRouter);
 
 const start = async () => {
   try {
-    app.listen(8080);
+    app.listen(PORT);
   } catch (err) {
     console.error(`Error on server startup: ${err.message}`);
   }

@@ -22,7 +22,7 @@ const About = () => {
 							<Button text="Зв'язатись з нами" />
 
 						</Link>
-						<Link to="/main">
+						<Link to="/">
 
 							<Button text="Головна сторінка" />
 

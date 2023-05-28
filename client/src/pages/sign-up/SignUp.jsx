@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './signUp.module.css'
 import InputSign from '../../common/components/InputSign';
 import Button from '../../common/components/Button';
+import URL from '../../common/helper/url';
 import { ReactComponent as Logo } from '../../assets/svg/Logo.svg';
 const SignUp = () => {
+	const navigate = useNavigate();
+
 	const [dataForm, setDataForm] = useState({
 		name: '',
 		email: '',
@@ -27,7 +30,7 @@ const SignUp = () => {
 		} else {
 			setErrors({});
 			try {
-				const response = await fetch('http://localhost:8080/api/auth/register', {
+				const response = await fetch(`${URL}/api/auth/register`, {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(dataForm),
@@ -35,6 +38,8 @@ const SignUp = () => {
 				const result = await response.json();
 				if (response.ok) {
 					alert(result.message);
+					navigate('/sign-in', { replace: true });
+
 				} else {
 					alert(result.error);
 				}
@@ -67,7 +72,7 @@ const SignUp = () => {
 			<div className={styles.box} >
 				<div className={styles.wrapper}>
 					<Logo className={styles.logo} />
-					<form onSubmit={handleSubmit}>
+					<form className={styles.form} onSubmit={handleSubmit}>
 						<InputSign
 							type='text'
 							placeholder='Введіть імя'
@@ -94,9 +99,9 @@ const SignUp = () => {
 						/>
 						<Button text='Зареєструватися' type='submit' />
 					</form>
-					<p className='tip'>
-						if you have an account you can{' '}
-						<Link to=''>
+					<p className={styles.tip}>
+						Якщо ви маєте акаунт, ви можете{' '}
+						<Link to='/sign-in'>
 							<span className='link-helper'>Увійти</span>
 						</Link>
 					</p>

@@ -11,6 +11,8 @@ import FilterInput from '../../common/components/FilterInput';
 import WarriorImg from '../../assets/images/warrior.png';
 import { Link } from 'react-router-dom';
 
+import URL from '../../common/helper/url';
+
 const Warrior = () => {
 	const [filter, setFilter] = useState('');
 	const [data, setData] = useState([]);
@@ -31,12 +33,12 @@ const Warrior = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/warriorRehabilitation${generateNameStringQuery()}`, options)
+		fetch(`${URL}/api/warriorRehabilitation${generateNameStringQuery()}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
 				setData(data.receivedwarriorRehabilitation);
-				console.log(`http://localhost:8080/api/warriorRehabilitation${generateNameStringQuery()}`);
+				console.log(`${URL}/api/warriorRehabilitation${generateNameStringQuery()}`);
 			})
 			.catch((err) => console.log('error'));
 

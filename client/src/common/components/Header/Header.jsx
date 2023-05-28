@@ -5,6 +5,8 @@ import { ReactComponent as Exit } from '../../../assets/svg/Exit.svg';
 import styles from './header.module.css';
 import { useAuth } from '../../hook/useAuth';
 
+import URL from '../../helper/url';
+
 const Header = () => {
 	const { signout } = useAuth();
 	const [isAdmin, setIsAdmin] = useState(false);
@@ -12,7 +14,7 @@ const Header = () => {
 	useEffect(() => {
 		const fetchUser = async () => {
 			try {
-				const response = await fetch('http://localhost:8080/api/users/me', {
+				const response = await fetch(`${URL}/api/users/me`, {
 					headers: {
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -39,7 +41,7 @@ const Header = () => {
 
 	return (
 		<header className={styles.header}>
-			<Link to="/main">
+			<Link to="/">
 				<Logo className={styles.logo} />
 			</Link>
 			{localStorage.length !== 0 && (<nav className={styles.nav}>
@@ -51,7 +53,7 @@ const Header = () => {
 						adminPanel
 					</Link>
 				)}
-				<Link to="/main">
+				<Link to="/">
 					<Exit className={styles.exit} onClick={handleExit} />
 				</Link>
 			</nav>)}

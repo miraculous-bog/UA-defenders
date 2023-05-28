@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import Stub from '../../../assets/images/stub.png';
 import Button from '../Button';
 import CardWrapper from '../../HOCS/CardWrapper';
+import Modal from '../Modal';
 import styles from './feedbackCard.module.css';
+
+import URL from '../../helper/url';
 
 const FeedbackCard = ({ id, img = Stub, email, message, contact, btnState = true }) => {
 	const [btn, setBtn] = useState(btnState);
@@ -19,7 +22,7 @@ const FeedbackCard = ({ id, img = Stub, email, message, contact, btnState = true
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/feedback/${id}`, options)
+		fetch(`${URL}/api/feedback/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -40,7 +43,7 @@ const FeedbackCard = ({ id, img = Stub, email, message, contact, btnState = true
 				<img className={styles.img} src={img} alt="vizualization" />
 			</div>
 			<div className={styles.buttons}>
-				<Button text="Детальна інформація" />
+				<Modal name={message} detail={contact} />
 				{btn ? <div className="controllers">
 					<Button className={styles.btn} text="Видалити" fn={deleteRequest} id={id} />
 				</div> : null}

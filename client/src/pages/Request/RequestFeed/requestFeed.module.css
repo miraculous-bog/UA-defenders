@@ -6,6 +6,8 @@
 list-style-type: none;
 display: flex;
 flex-wrap: wrap;
+align-self: flex-start;
+
 }
 .more {
 	margin: 0 auto;
@@ -13,4 +15,6 @@ flex-wrap: wrap;
 }
 .item {
 	display: block;
+	margin: 2.5%;
+	align-self: flex-start;
 }

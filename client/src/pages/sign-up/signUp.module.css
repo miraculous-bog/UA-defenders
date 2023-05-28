@@ -31,7 +31,7 @@
 	margin: 0;
     background: yellow;
     position: absolute;
-    top: 50%;
+    top: 58%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
@@ -54,4 +54,8 @@
 	color: #000000;
 	border-top: 1px solid #C08767;
 	text-align: center;
+}
+.tip {
+	text-align: center;
+	/* padding-left: 10%; */
 }

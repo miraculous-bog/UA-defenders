@@ -4,6 +4,7 @@ import {
 	authorReceiveErrorCreator,
 } from './actionCreator';
 import { store } from '..';
+import URL from '../../../common/helper/url';
 
 export const authorLoadThunkCreator = (postToAdd, setAuthors) => {
 	const options = {
@@ -16,7 +17,7 @@ export const authorLoadThunkCreator = (postToAdd, setAuthors) => {
 	};
 	store.dispatch(authorFetchPostCreator());
 	return function (dispatch) {
-		return fetch(`http://localhost:4000/authors/add`, options)
+		return fetch(`${URL}/authors/add`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				if (data.statusText === 'Not Found') {

@@ -1,8 +1,6 @@
 import './App.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import SignIn from './pages/sign-in/SignIn';
-// import SignUp from './pages/sign-un/SignUp';
-import CardMenu from './common/components/CardMenu';
 import AdminPanel from './pages/AdminPanel';
 import Main from './pages/Main';
 import About from './pages/About';
@@ -18,17 +16,19 @@ import FormRequest from './pages/Form/FormRequest';
 import SignUp from './pages/sign-up/SignUp';
 import FormFeedback from './pages/Form/FormFeedback';
 import Fond from './pages/Fond';
+import NotFound from './pages/NotFound';
 function App() {
   return (
     <>
       <AuthProvider>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route index element={<SignIn />} />
+            <Route index element={<RequireAuth><Main /></RequireAuth>} />
+
+            <Route path="sign-in" element={<SignIn />} />
             <Route path="sign-up" element={<SignUp />} />
 
 
-            <Route path="main" element={<RequireAuth><Main /></RequireAuth>} />
             <Route path="about-us" element={<RequireAuth><About /></RequireAuth>} />
             <Route path="charity-project" element={<RequireAuth><Project /></RequireAuth>} />
             <Route path="warrior-rehabilitation" element={<RequireAuth><Warrior /></RequireAuth>} />
@@ -47,6 +47,8 @@ function App() {
                 <AdminPanel />
               </RequireAuth>
             } />
+
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </AuthProvider>

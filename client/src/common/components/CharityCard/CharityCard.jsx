@@ -5,6 +5,7 @@ import CardWrapper from '../../HOCS/CardWrapper';
 import styles from './charityCard.module.css';
 import Modal from '../Modal';
 import cors from 'cors';
+import URL from '../../helper/url';
 
 const CharityCard = ({ id, img = Stub, title, description, details, btnState = true }) => {
 	const [btn, setBtn] = useState(btnState);
@@ -19,7 +20,7 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/charityProject/accept/${id}`, options)
+		fetch(`${URL}/api/charityProject/accept/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
@@ -38,7 +39,7 @@ const CharityCard = ({ id, img = Stub, title, description, details, btnState = t
 			},
 		};
 		console.log(`Bearer ${localStorage.getItem('token')}`);
-		fetch(`http://localhost:8080/api/charityProject/reject/${id}`, options)
+		fetch(`${URL}/api/charityProject/reject/${id}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);

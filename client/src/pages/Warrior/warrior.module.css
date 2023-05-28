@@ -9,6 +9,9 @@
 	max-width: 500px;
 	max-height: 380px;
 }
+.postimg {
+	margin-top: 40px;
+}
 .fonds {
 	display: flex;
 	justify-content: space-between;

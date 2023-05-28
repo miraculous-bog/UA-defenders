@@ -10,6 +10,8 @@ import generateQueryString from '../../common/helper/generateQueryString';
 import ProjectImg from '../../assets/images/project.png';
 import { Link } from 'react-router-dom';
 
+import URL from '../../common/helper/url';
+
 const Request = () => {
 	const [activeType, setActiveType] = useState('offers');
 	const [data, setData] = useState([]);
@@ -31,12 +33,12 @@ const Request = () => {
 			},
 		};
 
-		fetch(`http://localhost:8080/api/helpRequest/${activeType}${generateQueryString(selectFilter)}`, options)
+		fetch(`${URL}/api/helpRequest/${activeType}${generateQueryString(selectFilter)}`, options)
 			.then((data) => data.json())
 			.then((data) => {
 				console.log(data);
 				setData(data.receivedHelpRequests);
-				console.log(`http://localhost:8080/api/helpRequest/${activeType}${generateQueryString()}`);
+				console.log(`${URL}/api/helpRequest/${activeType}${generateQueryString()}`);
 			})
 			.catch((err) => console.log('error'));
 
