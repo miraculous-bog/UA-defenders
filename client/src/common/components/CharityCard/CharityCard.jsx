@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Stub from '../../../assets/images/stub.png';
 import Button from '../Button';
 import CardWrapper from '../../HOCS/CardWrapper';
-import styles from './charityCard.module.css';
 import Modal from '../Modal';
 import cors from 'cors';
 import URL from '../../helper/url';
 
+import styles from './charityCard.module.css';
 const CharityCard = ({ id, img = Stub, title, description, details, btnState = true }) => {
 	const [btn, setBtn] = useState(btnState);
 

@@ -1,3 +1,3 @@
-const URL = 'https://cryptic-lake-57067.herokuapp.com';
+const URL = 'http://localhost:8080';
 
 export default URL;
